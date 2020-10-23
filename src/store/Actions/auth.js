@@ -23,6 +23,18 @@ export const authFail = (error) => {
     };
 };
 
+export const logout =()=>{
+    return{
+        type:actionTypes.AUTH_LOGOUT
+    };
+};
+export const checkAuthTimeout =()=>{
+    return dispatch =>{
+        setTimeout(()=>{
+            dispatch(logout());
+        },3600*1000)// JWT token dies after an hour
+    }
+}
 export const auth = (email, password) => {
     return dispatch => {
         dispatch(authStart());
