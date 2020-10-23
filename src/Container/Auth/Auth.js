@@ -1,42 +1,45 @@
-import React, {Component} from 'react';
-import {connect } from 'react-redux';
-import * as actions from '../../store/Actions/Index';
+import React, { Component } from 'react';
+import { connect } from 'react-redux';
+import Spinner from '../../Components/UI/Spinner/Spinner';
 import Input from '../../Components/UI/Input/Input';
 import Button from '../../Components/UI/Button/Button';
 import classes from './Auth.css';
-class Auth extends Component{
-    state={
-        controls:{
-            email:{
-                    elementType:'input',
-                    elementConfig:{
-                        type:'email',
-                        placeholder:'Your Email'
-                    },
-                    value:'',
-                    validation:{
-                        required:true,
-                        isEmail:true
-                    },
-                    valid:false,
-                    touched: false
-                 },
-                 password:{
-                    elementType:'input',
-                    elementConfig:{
-                        type:'password',
-                        placeholder:'Password'
-                    },
-                    value:'',
-                    validation:{
-                        required:true,
-                        minLength:8
-                    },
-                    valid:false,
-                    touched: false
-                 }
+import * as actions from '../../store/Actions/Index';
+
+class Auth extends Component {
+    state = {
+        controls: {
+            email: {
+                elementType: 'input',
+                elementConfig: {
+                    type: 'email',
+                    placeholder: 'Mail Address'
+                },
+                value: '',
+                validation: {
+                    required: true,
+                    isEmail: true
+                },
+                valid: false,
+                touched: false
+            },
+            password: {
+                elementType: 'input',
+                elementConfig: {
+                    type: 'password',
+                    placeholder: 'Password'
+                },
+                value: '',
+                validation: {
+                    required: true,
+                    minLength: 6
+                },
+                valid: false,
+                touched: false
+            }
         }
     }
+
     checkValidity(value, rules) {
         let isValid = true;
         if (!rules) {
@@ -80,21 +83,23 @@ class Auth extends Component{
         };
         this.setState({controls: updatedControls});
     }
-    submitHandler=(event)=>{
+
+    submitHandler = (event) => {
         event.preventDefault();
-        this.props.onAuth(this.state.controls.email.value,this.state.controls.password.value)
+        this.props.onAuth(this.state.controls.email.value, this.state.controls.password.value);
     }
 
-
-    render(){
-        const formElementsArray=[];
-        for (let key in this.state.controls){
-            formElementsArray.push({
-                id:key,
+    
+    render () {
+        const formElementsArray = [];
+        for ( let key in this.state.controls ) {
+            formElementsArray.push( {
+                id: key,
                 config: this.state.controls[key]
-            });
+            } );
         }
-        const form = formElementsArray.map( formElement => (
+
+        let form = formElementsArray.map( formElement => (
             <Input
                 key={formElement.id}
                 elementType={formElement.config.elementType}
@@ -105,22 +110,42 @@ class Auth extends Component{
                 touched={formElement.config.touched}
                 changed={( event ) => this.inputChangedHandler( event, formElement.id )} />
         ) );
+        let spinner = null;
+        if(this.props.loading){
+            spinner=<Spinner />
+        }
 
+        let errorMessage = null;
+        if(this.props.error){
+            errorMessage=(
+            <p>{this.props.error.message}</p>
+            )
+        }
         return (
-            
             <div className={classes.Auth}>
                 <form onSubmit={this.submitHandler}>
-                    {form }
-                    <Button btnType="Success">Login</Button>
+                    
+                    {form}
+                    <Button btnType="Success">SUBMIT</Button>
+                    {spinner}
+                    {errorMessage}
                 </form>
             </div>
-        )
+        );
     }
 }
+
 const mapDispatchToProps = dispatch => {
     return {
         onAuth: (email, password) => dispatch(actions.auth(email, password))
     };
 };
 
-export default connect(null, mapDispatchToProps)(Auth);
+const mapStatetoProps = state =>{
+    return {
+        loading: state.auth.loading,
+        error: state.auth.error
+    };
+};
+
+export default connect(mapStatetoProps, mapDispatchToProps)(Auth);
