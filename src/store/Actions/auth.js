@@ -43,7 +43,9 @@ export const auth = (email, password) => {
             password:password,
         }
         console.log('SENT');
-        axios.post('http://localhost:3001/auth/login',authData)
+        let url= 'http://localhost:3001/auth/login'
+        
+        axios.post(url,authData)
         .then(response=>{
             console.log('Data came back!');
             console.log(response);
