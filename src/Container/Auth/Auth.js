@@ -235,6 +235,16 @@ class Auth extends Component {
             }
         }
 
+        //configuring success message for signup state onlue
+        let successMessage;
+        if(!this.state.isSignIn){
+            if(this.props.success_signup){
+                successMessage=(
+                <p className="SignUp-success">{this.props.success_signup}</p>
+            )
+        }
+    }
+
         //configuring error message based on if sigin or signup is the state
         let errorMessage = null;
         if(this.state.isSignIn){
@@ -269,6 +279,7 @@ class Auth extends Component {
                     {form}
                     {button}
                     {spinner}
+                    {successMessage}
                     {errorMessage}
                     <a className="forgot" >Forgot your password?</a>
                      <button 
@@ -302,7 +313,8 @@ const mapStatetoProps = state =>{
         loading_auth: state.auth.loading,
         error_auth:  state.auth.error,
         loading_signup: state.signup.loading,
-        error_signup:state.signup.error   
+        error_signup:state.signup.error, 
+        success_signup: state.signup.success
     };
 };
 

@@ -8,6 +8,7 @@ const initialState ={
     role:null,
     password: null,
     error: null,
+    success:null,
     loading:false
 };
 const SignUpstart  =(state,action) =>{
@@ -23,6 +24,7 @@ const SignUpSuccess =(state,action)=>{
         name:action.name,
         password:action.password,
         error:null,
+        success: "Kongrajulations, We welcome you to WildSprint!! You may proceed to sign in with your registered email ID",
         loading:false
     });
 };
