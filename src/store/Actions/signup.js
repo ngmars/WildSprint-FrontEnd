@@ -1,4 +1,4 @@
-import * as actionTypes from './actionTypes';
+import * as actionTypes from './actionTypesSignUp';
 import axios from 'axios';
 
 export const SignUpstart =() =>{
@@ -7,17 +7,23 @@ export const SignUpstart =() =>{
     };
 };
 
-export const SignUpSuccess =() =>{
+export const SignUpSuccess =(name,role,password,email) =>{
     return {
-        type:actionTypes.SIGNUP_SUCCESS
+        type:actionTypes.SIGNUP_SUCCESS,
+        name:name,
+        role:role,
+        email:email,
+        password:password
     };
 };
 
 export const SignUpFail = (error) =>{
+    console.log('SENT DATA function',error)
     return{
         type: actionTypes.SIGNUP_FAIL,
         error: error
-    };
+    }
+   
 };
 
 
@@ -31,7 +37,7 @@ export const SignUp =(email,name,password)=>{
         role:'organiser'
     }
     console.log('SignUpData');
-    console.log('SENT');
+    console.log('SENT SIGNUP');
     let url = 'http://localhost:3001/auth/SignUp'
     axios.post(url,SignUpData)
     .then(response=>{
@@ -41,6 +47,7 @@ export const SignUp =(email,name,password)=>{
     .catch(err=>{
         console.log(err.response.data);
         dispatch(SignUpFail(err.response.data))
+        console.log('SENT DATA next')
     });
     };
-}
+};

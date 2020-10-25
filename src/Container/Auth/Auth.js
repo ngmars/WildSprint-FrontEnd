@@ -9,7 +9,9 @@ import lockCombination from '@iconify/icons-ion/lock-combination';
 import * as actions from '../../store/Actions/Index';
 
 class Auth extends Component {
+    //Setting States
     state = {
+        //Configure input fields for sign-in form
         controls_signIn: {
             email: {
                 elementType: 'input',
@@ -44,7 +46,7 @@ class Auth extends Component {
             }
         },
 
-
+        //Configure input fields for sign-up form
         controls_signUp: {
             email: {
                 elementType: 'input',
@@ -106,9 +108,9 @@ class Auth extends Component {
             }
         },
         isSignIn:true,
-        isError:false 
+   
     }
-
+    //Validates all inputs
     checkValidity(value, rules) {
         let isValid = true;
         if (!rules) {
@@ -139,7 +141,7 @@ class Auth extends Component {
 
         return isValid;
     }
-
+    //Checks if an input has been entered in the text box
     inputChangedHandler = (event, controlName) => {
         
         if(this.state.isSignIn){
@@ -167,7 +169,7 @@ class Auth extends Component {
 
         }
     }
-
+    //saves the input in the state and passes it on as props
     submitHandler = (event) => {
         if(this.state.isSignIn){
             event.preventDefault();
@@ -178,16 +180,21 @@ class Auth extends Component {
             this.props.onSignUp(this.state.controls_signUp.email.value, this.state.controls_signUp.name.value, this.state.controls_signUp.password.value);
         }
     }
+
+    //switch between sigin and signup(To add forgot password)
     switchAuthHandler =()=>{
         this.setState(prevState=>{
                 return {isSignIn: !prevState.isSignIn}
         })
     };
    
+
+
     render () {
-        const formElementsArray = [];
+        
+        const formElementsArray = []; //array for input elements
         if(this.state.isSignIn){
-        for ( let key in this.state.controls_signIn ) {
+        for ( let key in this.state.controls_signIn ) {  // render input elements from array
             formElementsArray.push( {
                 id: key,
                 config: this.state.controls_signIn[key]
@@ -202,7 +209,7 @@ class Auth extends Component {
                 } );
             }
         }
-
+        //mapping configurations of input elements 
         let form = formElementsArray.map( formElement => (
             <Input
                 key={formElement.id}
@@ -215,21 +222,44 @@ class Auth extends Component {
                 touched={formElement.config.touched}
                 changed={( event ) => this.inputChangedHandler( event, formElement.id )} />
         ) );
+
+        //configuring loading...
         let spinner = null;
-        if(this.props.loading){
-            spinner=<Spinner />
+        if(this.state.isSignIn){
+                if(this.props.loading_auth){
+                spinner=<Spinner />
+            }
+        }else{
+            if(this.props.loading_signup){
+                spinner=<Spinner />
+            }
         }
 
+        //configuring error message based on if sigin or signup is the state
         let errorMessage = null;
-        if(this.props.error){
-            errorMessage=(
-            <p className="SignIn-error">{this.props.error.message}</p>
-            );
+        if(this.state.isSignIn){
+            if(this.props.error_auth){
+             console.log("in main page",this.props.error_auth)
+                errorMessage=(
+                <p className="SignIn-error">{this.props.error_auth.message}</p>
+                );
+         }
+        }else{
+            if(this.props.error_signup){
+                console.log("in main page",this.props.error_signup)
+                   errorMessage=(
+                   <p className="SignIn-error">{this.props.error_signup.message}</p>
+                   );
+         }
         }
+
+
+        //configuring submit button based on if sigin or signup is the state
        let button=  (
             <button className='SignIn-button'>{this.state.isSignIn ? 'Log In': 'Sign Up'}</button>
         );
         
+        //returning HTML jsx 
         return (
             <div className="logindark">
                 <form className="signin-form" onSubmit={this.submitHandler}>
@@ -240,7 +270,7 @@ class Auth extends Component {
                     {button}
                     {spinner}
                     {errorMessage}
-                    <a className="forgot" >Forgot your email or password?</a>
+                    <a className="forgot" >Forgot your password?</a>
                      <button 
                      onClick={this.switchAuthHandler}
                      className="forgot-btn ">{this.state.isSignIn ? 'New user?Click here to sign up': 'Already have an account? Click Here'}</button>
@@ -252,8 +282,9 @@ class Auth extends Component {
 
     
 }
+    
 
-
+//To access the props sent 
 const mapSignInDispatchToProps =dispatch => {
   
     return{
@@ -263,13 +294,18 @@ const mapSignInDispatchToProps =dispatch => {
     };
 }
 
-const mapSignInStatetoProps = state =>{
+
+//to access the errors and loading state 
+const mapStatetoProps = state =>{
+    console.log('main page',state)
     return {
-        loading: state.auth.loading,
-        error: state.auth.error
+        loading_auth: state.auth.loading,
+        error_auth:  state.auth.error,
+        loading_signup: state.signup.loading,
+        error_signup:state.signup.error   
     };
 };
 
 
-export default connect(mapSignInStatetoProps, mapSignInDispatchToProps)(Auth);
+export default connect(mapStatetoProps, mapSignInDispatchToProps)(Auth);
 

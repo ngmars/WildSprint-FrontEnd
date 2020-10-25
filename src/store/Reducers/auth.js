@@ -1,4 +1,4 @@
-import * as actionTypes from '../Actions/actionTypes';
+import * as actionTypes from '../Actions/actionTypesSignIn';
 import { updateObject } from '../utils';
 
 
@@ -27,6 +27,7 @@ const authSuccess =(state,action)=>{
 
 
 const authFail =(state,action)=>{
+    //console.log('SENT DATA red',action.error)
     return updateObject(state,{
         error:action.error,
         loading: false
