@@ -1,19 +1,24 @@
-import React from 'react';
+import React, { Component } from 'react';
 import './App.css';
 
-import Auth from'./Container/Auth/Auth'
-import {BrowserRouter as Router,Switch, Route} from "react-router-dom"
-function App() {
+import Auth from'./Container/Auth/Auth';
+import Events from './Container/Dashboard/Events/Events';
+import {BrowserRouter as Router,Switch, Route} from "react-router-dom";
+
+class App extends Component {
+  render () {
   return (
     <div className="App">
     <Router>
       <Switch>
-        <Route path="/auth" exact component={Auth}/>
+        <Route path="/" exact component={Auth}/>
+        <Route path="/events" exact component={Events}/>
       </Switch>
     </Router>
-      {/* <About/> */}
+
     </div>
   );
+};
 }
 
 export default App;

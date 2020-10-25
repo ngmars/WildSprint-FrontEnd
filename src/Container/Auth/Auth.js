@@ -301,7 +301,7 @@ const mapSignInDispatchToProps =dispatch => {
     return{
         
         onAuth: (email, password) => dispatch(actions.auth(email, password)),
-        onSignUp:(email,name,password)=>dispatch(actions.SignUp(email,name,password))
+        onSignUp:(email,name,password,confpassword)=>dispatch(actions.SignUp(email,name,password,confpassword))
     };
 }
 
