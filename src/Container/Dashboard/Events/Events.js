@@ -3,6 +3,7 @@
 import * as actions from '../../../store/Actions/Index';
 import Event from '../../../Components/Events/Event';
 import Spinner from '../../../Components/UI/Spinner/Spinner';
+import {Redirect} from 'react-router-dom';
 import Navbar from '../../../Components/Navbar/Navbar';
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
@@ -34,6 +35,7 @@ class Events extends Component {
             });
          console.log('EVENT NAME',this.state.eventNameArr) 
         }
+    
     events = this.state.eventNameArr.map( event => (
      
         <Event
@@ -42,13 +44,19 @@ class Events extends Component {
            />
         ))
     }
+    let TokenExpRedirect = null;
+    if (!localStorage.getItem('token')){
+        TokenExpRedirect =<Redirect to ='/'/>
+    }
        
         return(
             <div>
                 {navbar}
                 <div class="fund-pics row">
                 <div>{events}</div>
+                {TokenExpRedirect}
                 </div>
+                
             </div>
 
         )
