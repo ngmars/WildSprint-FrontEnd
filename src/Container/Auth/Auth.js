@@ -4,6 +4,7 @@ import Spinner from '../../Components/UI/Spinner/Spinner';
 import Input from '../../Components/UI/Input/Input';
 import Button from '../../Components/UI/Button/Button';
 import classes from './Auth.css';
+import {Redirect} from 'react-router-dom';
 import { Icon } from '@iconify/react';
 import lockCombination from '@iconify/icons-ion/lock-combination';
 import * as actions from '../../store/Actions/Index';
@@ -209,6 +210,10 @@ class Auth extends Component {
                 } );
             }
         }
+        let authRedirect = null;
+        if (this.props.isAuthenticated){
+            authRedirect =<Redirect to ='/events'/>
+        }
         //mapping configurations of input elements 
         let form = formElementsArray.map( formElement => (
             <Input
@@ -286,6 +291,7 @@ class Auth extends Component {
                      onClick={this.switchAuthHandler}
                      className="forgot-btn ">{this.state.isSignIn ? 'New user?Click here to sign up': 'Already have an account? Click Here'}</button>
                 </form>
+                {authRedirect}
             </div>
         );
         
@@ -314,7 +320,8 @@ const mapStatetoProps = state =>{
         error_auth:  state.auth.error,
         loading_signup: state.signup.loading,
         error_signup:state.signup.error, 
-        success_signup: state.signup.success
+        success_signup: state.signup.success,
+        isAuthenticated: state.auth.token !==null
     };
 };
 

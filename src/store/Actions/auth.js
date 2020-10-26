@@ -24,7 +24,14 @@ export const authFail = (error) => {
 };
 
 export const logout =()=>{
+    localStorage.removeItem('token')
+    localStorage.removeItem('role')
+    localStorage.removeItem('name')
+    localStorage.removeItem('userId')
+    localStorage.removeItem('ExpirationDate')
+
     return{
+        
         type:actionTypes.AUTH_LOGOUT
     };
 };
@@ -44,11 +51,17 @@ export const auth = (email, password) => {
         }
         console.log('SENT');
         let url= 'http://localhost:3001/auth/login'
-        
         axios.post(url,authData)
+        
         .then(response=>{
             console.log('Data came back!');
             console.log(response);
+            const ExpirationDate = new Date(new Date().getTime()+ 3600000)
+            localStorage.setItem('token',response.data.token)
+            localStorage.setItem('role',response.data.role)
+            localStorage.setItem('name',response.data.name)
+            localStorage.setItem('userId',response.data.userId)
+            localStorage.setItem('ExpirationDate',ExpirationDate)
             dispatch(authSuccess(response.data.token,response.data.role,response.data.name,response.data.userId))
         })
         .catch(err=>{

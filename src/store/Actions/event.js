@@ -20,11 +20,16 @@ export const fetchEventsStart =()=>{
     };
 }
 
-export const fetchEvents =()=>{
-    return dispatch =>{
+export const fetchEvents =(token)=>{
+    return dispatch=>{
         dispatch(fetchEventsStart());
         console.log('GOT DATA');
-        axios.get('http://localhost:3001/fundraiser/')
+        let config = {
+            headers: {
+              'Authorization': 'Bearer ' + token
+            }
+          }
+        axios.get('http://localhost:3001/fundraiser/',config)
         .then(res=>{
            // console.log("NEWWW RESPONSE",res.data.fundraiser)
             const fetchedEvents = [];

@@ -1,0 +1,50 @@
+.navbar{
+    height: 10vh;
+    position:fixed;
+    z-index: 100;
+    top: 0;
+    width: 100%;
+    overflow: hidden;
+    background-color: #343A40;
+}
+
+.navbar-button{
+  font-size: 16px;  
+  border: none;
+  outline: none;
+  float:right;
+  position:relative;
+  color: white;
+  padding: 14px 16px;
+  background-color: inherit;
+  font-family: inherit;
+  margin: 0;
+}
+.caret-down{
+    float:right
+}
+
+.navbar nav-drop{
+    display: none;
+    position: absolute;
+    background-color: #f9f9f9;
+    min-width: 160px;
+    box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
+    z-index: 1;
+}
+
+.navbar dropdown-menu{
+    margin-top: 10px;
+}
+
+.dropdown-item{
+    color: rgb(59, 59, 59);
+}
+
+.rounded-circle{
+    float: right;
+    border-radius: 50%;
+    height:5vh;
+    width:7vh;
+    margin-bottom: 20px;
+}
