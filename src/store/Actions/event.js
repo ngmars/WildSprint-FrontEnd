@@ -36,7 +36,7 @@ export const fetchEvents =()=>{
                     } );
                 }
             dispatch(fetchEventsSuccess(fetchedEvents));
-            console.log("FETCHED EVENTS",fetchedEvents);
+            //console.log("FETCHED EVENTS",fetchedEvents);
         })
         .catch(err=>{
             dispatch(fetchEventsFail(err));
