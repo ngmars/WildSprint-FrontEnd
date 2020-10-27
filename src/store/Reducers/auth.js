@@ -1,4 +1,4 @@
-import * as actionTypes from '../Actions/actionTypesSignIn';
+import * as actionTypes from '../Actions/actionTypes/actionTypesSignIn';
 import { updateObject } from '../utils';
 
 

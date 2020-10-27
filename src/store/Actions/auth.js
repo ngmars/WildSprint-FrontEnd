@@ -1,4 +1,4 @@
-import * as actionTypes from './actionTypesSignIn';
+import * as actionTypes from './actionTypes/actionTypesSignIn';
 import axios from 'axios';
 export const authStart = () => {
     return {

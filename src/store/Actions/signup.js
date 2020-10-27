@@ -1,4 +1,4 @@
-import * as actionTypes from './actionTypesSignUp';
+import * as actionTypes from './actionTypes/actionTypesSignUp';
 import axios from 'axios';
 
 export const SignUpstart =() =>{

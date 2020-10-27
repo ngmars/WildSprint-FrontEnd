@@ -1,6 +1,8 @@
 //exporting signin component
-export {auth} from './auth';
+export {auth,logout} from './auth';
 //exporting signup component
-export {SignUp} from './signup' 
+export {SignUp} from './signup' ;
 
-export {fetchEvents} from './event'
+export {fetchEvents} from './event';
+
+export {fetchProfile} from './profile';

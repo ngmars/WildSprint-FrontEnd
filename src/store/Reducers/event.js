@@ -1,4 +1,4 @@
-import * as actionTypes from '../Actions/actionTypesEvents';
+import * as actionTypes from '../Actions/actionTypes/actionTypesEvents';
 import { updateObject } from '../utils';
 const initialState={
     events:[],

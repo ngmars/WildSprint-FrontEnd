@@ -1,4 +1,4 @@
-import * as actionTypes from './actionTypesEvents';
+import * as actionTypes from './actionTypes/actionTypesEvents';
 import axios from 'axios';
 export const fetchEventsSuccess =(events) =>{
     return {

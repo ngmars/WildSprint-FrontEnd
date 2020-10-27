@@ -15,7 +15,7 @@ const navbar =(props)=>{
         <div class="dropdown">
             <button class="dropbtn">{name}</button>
             <div class="dropdown-content">
-            <a href="">Logout</a>
+            <a href="/logout">Logout</a>
             <a href="">Change Password</a>
             </div>
         </div>        
