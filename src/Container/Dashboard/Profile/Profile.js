@@ -23,22 +23,28 @@ class ProfileDisp extends Component{
         let phone = this.props.phone;
         let sidebar = <Sidebar role = {localStorage.getItem('role')}/>;
         let navbar =  <Navbar name ={localStorage.getItem('name')}/>;
-    
+        let isAuth
+         if(!localStorage.getItem('token')){
+            return (
+                isAuth = <Redirect to ='/'/>
+            )
+        }
         let profile =(<Profile
                             name={name} 
                             lastname={lastname}
                             email={email}
                             profession={profession}
                             phone={phone}
-                            />
-         )
+                />)
          
          ;
         console.log('just the name,Im main',this.props.name)
         return(
         <div>
-            
+            {navbar}
+            {sidebar}
             {profile }
+            {isAuth}
         </div> 
             
             )

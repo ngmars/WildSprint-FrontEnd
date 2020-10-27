@@ -10,7 +10,7 @@
   max-width: 80%;
 }
 
-h5{
+.titlename{
   font-size: 30px;
   color: #333;
 }
@@ -27,11 +27,15 @@ h5{
   margin-bottom: 10%;
   margin-top: -1em;
 }
+.details{
+  margin: 1%;
+}
 
 .details label{
   font-weight: 600;
 }
 .details p{
+  margin-left:10%;
   font-weight: 600;
   color: #797979;
 }  

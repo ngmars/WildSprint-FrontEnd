@@ -10,9 +10,9 @@ import classes from './SideBar.css';
             <div class="sidebar">
         <nav class="sidenav">
         <ul class="sidebar-list" >
-            <li><a href="profile.html">PROFILE</a></li><br/><br/>
+            <li><a href="/profile">PROFILE</a></li><br/><br/>
             <li><a href="/events">EVENTS</a></li><br/><br/>
-            <li><a href="gallery.html">GALLERY</a></li>
+            <li><a href="/gallery">GALLERY</a></li>
         </ul>
         </nav>
     </div> 
@@ -24,10 +24,10 @@ import classes from './SideBar.css';
             <div class="sidebar">
         <nav class="sidenav">
         <ul class="sidebar-list" >
-            <li><a href="profile.html">PROFILE</a></li><br/><br/>
-            <li><a href="fund.html">FUNDRAISER</a></li><br/><br/>
+            <li><a href="/profile">PROFILE</a></li><br/><br/>
+            <li><a href="/fund">FUNDRAISER</a></li><br/><br/>
             <li><a href="/events">EVENTS</a></li><br/><br/>
-            <li><a href="gallery.html">GALLERY</a></li>
+            <li><a href="/gallery">GALLERY</a></li>
         </ul>
         </nav>
     </div> 
@@ -38,9 +38,9 @@ import classes from './SideBar.css';
             <div class="sidebar">
         <nav class="sidenav">
         <ul class="sidebar-list" >
-            <li><a href="profile.html">PROFILE</a></li><br/><br/>
+            <li><a href="/profile">PROFILE</a></li><br/><br/>
             <li><a href="/events">EVENTS</a></li><br/><br/>
-            <li><a href="gallery.html">GALLERY</a></li>
+            <li><a href="/gallery">GALLERY</a></li>
         </ul>
         </nav>
     </div> 

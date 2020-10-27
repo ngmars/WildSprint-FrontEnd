@@ -10,34 +10,50 @@ const profile=(props) =>{
         let profession = props.profession;
         let phone = props.phone;
 
-    return(
-        <div className="dummy">
-        <div className="emp-profile">
-                <table>        
-                    <td className="colm">
-                        <img src={require("./tanya 3.jpg")} alt="" className="profilepic"/>
-                    </td> 
-                    <td className="colm">
-                        <h5>{name}</h5>           
-                        <input type="submit" className="profile-edit-btn" name="btnAddMore" value="Change Picture"/>
-                        <input type="submit" className="profile-edit-btn" name="btnAddMore" value="Edit Profile"/>
-                    
-                        <div className="details">     
-                            <label>First Name</label>
-                            <p>{name}</p>
-                            <label>Last Name</label>
-                            <p>{lastname}</p>
-                            <label>Email</label>
-                            <p>{email}</p>
-                            <label>Phone</label>
-                            <p>{phone}</p>
-                            <label>Profession</label>
-                            <p>{profession}</p>      
-                        </div>                  
-                    </td>   
-                </table>
-        </div>
+    return( <div class="dummy">
+    <div class="emp-profile">
+            <table>        
+            <tr>
+                <td class="colm">
+                    <img src={require("./tanya 3.jpg")} alt="" class="profilepic"/>
+                </td> 
+                <td class="colm">
+                    <h5 class="titlename">{name} {lastname}</h5>           
+                    <input type="submit" class="profile-edit-btn" name="btnAddMore" value="Edit Profile"/>
+                
+                    <div class="details">     
+                        <table>
+                            <tr>
+                                <td><label>First Name</label></td>
+                                <td><p>{name}</p></td>
+                            </tr>
+                            <tr>
+                                <td><label>Last Name</label></td>
+                                <td><p>{lastname}</p></td>
+                            </tr>
+                            <tr>
+                                <td><label>Email</label></td>
+                                <td><p>{email}</p></td>
+                            </tr>
+                            <tr>
+                                <td></td>
+                                <td></td>
+                            </tr>
+                            <tr>
+                                <td><label>Phone</label></td>
+                                <td><p>{phone}</p></td>
+                            </tr>
+                            <tr>
+                                <td><label>Profession</label></td>
+                                <td><p>{profession}</p></td>
+                            </tr>                            
+                        </table>                                 
+                    </div>                  
+                </td>   
+            </tr>
+            </table>
     </div>
+</div>
     )
 }
 export default profile;
