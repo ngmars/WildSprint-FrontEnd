@@ -10,13 +10,12 @@ const event=(props) =>{
     console.log("JSX ELEMENT name",name);
     console.log("JSX ELEMENT image",image);
     
-    let imageUrl= 'localhost:3001/'+image;
+    let imageUrl= 'http://localhost:3001/'+image;
     console.log(imageUrl)
     return(
         <div className="col-md-6 col-lg-4 col-xl-3">
           <figure className="snip1527">
-            <div className="image"><img src={require({imageUrl})}
-                alt="FundraisePicture"/></div>
+            <div className="image"><img src={imageUrl} /></div>
             <figcaption>
               <div className="date"><span className="day">GO</span><span className="month">FUND!</span></div>
               <h3>{name}</h3>
