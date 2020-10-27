@@ -43,7 +43,8 @@ export const fetchProfile =(token,userId)=>{
                         phone: res.data.user.phone,
                         fundraisers:res.data.user.fundraisers,
                         bills:res.data.user.bills,
-                        email:res.data.user.email
+                        email:res.data.user.email,
+                        photo:res.data.user.pPicture,
 
 
                     } );

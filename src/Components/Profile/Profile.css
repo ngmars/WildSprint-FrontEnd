@@ -28,10 +28,11 @@
   margin-top: -1em;
 }
 .details{
-  margin: 1%;
+  margin: 0%;
 }
 
 .details label{
+  display: inline;
   font-weight: 600;
 }
 .details p{
@@ -41,7 +42,7 @@
 }  
 
 .profilepic{
-  max-width: 70%;
+  width: 70%;
   padding:40px;
   border-radius: 15%;
 }

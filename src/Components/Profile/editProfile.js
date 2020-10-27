@@ -2,9 +2,8 @@ import { render } from '@testing-library/react';
 import React from 'react';
 import classes from './Profile.css'
 import axios from 'axios';
-
-const profile=(props) =>{
-    let name = props.name;
+const editProfile=(props) =>{
+let name = props.name;
         let email = props.email;
         let lastname = props.lastname;
         let profession = props.profession;
@@ -24,7 +23,7 @@ const profile=(props) =>{
                 </td> 
                 <td class="colm">
                     <h5 class="titlename">{name} {lastname}</h5>           
-                    
+                    <input type="submit" class="profile-edit-btn" name="btnAddMore" value="Change Picture"/>
                 
                     <div class="details">     
                         <table>
@@ -34,21 +33,17 @@ const profile=(props) =>{
                             </tr>
                             <tr>
                                 <td><label>Last Name</label></td>
-                                <td><p>{lastname}</p></td>
+                                <td><p><input type="text" name="" id="" placeholder={lastname}/></p></td>
                             </tr>
                             <tr>
                                 <td><label>Email</label></td>
                                 <td><p>{email}</p></td>
                             </tr>
                             <tr>
-                                <td></td>
-                                <td></td>
-                            </tr>
-                            <tr>
                                 <td><label>Phone</label></td>
-                                <td><p>{phone}</p></td>
+                                <td><p><input type="text" name="" id="" pattern="[0-9]{10}"placeholder={phone}/></p></td>
                             </tr>
-                                                      
+                                                       
                         </table>                                 
                     </div>                  
                 </td>   
@@ -58,4 +53,4 @@ const profile=(props) =>{
 </div>
     )
 }
-export default profile;
+export default editProfile;
