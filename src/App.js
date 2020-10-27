@@ -12,8 +12,10 @@ class App extends Component {
     <Router>
       <Switch>
         <Route path="/" exact component={Auth}/>
+        </Switch>
+        <Switch>
         <Route path="/events" exact component={Events}/>
-      </Switch>
+        </Switch>
     </Router>
 
     </div>

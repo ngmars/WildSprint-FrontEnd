@@ -5,7 +5,7 @@ import axios from 'axios';
 
 
 const event=(props) =>{
-    let name= props.name ;
+    let name= props.name;
     let image = props.image;
     console.log("JSX ELEMENT name",name);
     console.log("JSX ELEMENT image",image);
