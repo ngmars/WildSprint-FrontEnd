@@ -9,6 +9,7 @@ import Navbar from '../../../Components/Navbar/Navbar';
 import Sidebar from '../../../Components/SideBar/Sidebar';
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
+import FormData from 'form-data';
 
 class ProfileDisp extends Component{
     
@@ -45,34 +46,36 @@ class ProfileDisp extends Component{
             [event.target.name]: event.target.value
         })
     }
+   
     onFileUpload = () => { 
   
         // Create an object of formData 
         const formData = new FormData(); 
-        
+        let token = localStorage.getItem('token')
         // Update the formData object 
-        formData.append( 
-          "myFile", 
-          this.state.selectedFile, 
-          this.state.selectedFile.name 
-        ); 
+        
         console.log(formData); 
         
         const form = {
-            image: this.state.selectedFile,
             lastname: this.state.lastname,
             phone: this.state.phone,
             }
             console.log(form);
-            let token = localStorage.getItem('token')
+            formData.append("lastname",this.state.lastname);
+            formData.append("phone",this.state.phone);
+            formData.append( 
+                "image", 
+                this.state.selectedFile, 
+                this.state.selectedFile.name 
+              ); 
             let userId = localStorage.getItem('userId')
-            let config = {
-                headers: {
-                    'Authorization': 'Bearer ' + token
-                }
-              }
             let url= ('http://localhost:3001/user/update/'+userId)
-            axios.patch(url,config,form)
+            axios.patch(url,formData,{
+                headers: {
+                    'Authorization': 'Bearer ' + token,
+                    'Content-Type': 'application/json'
+                }
+            })
             this.setState(prevState=>{
                 return {isEditing: !prevState.isEditing}
         })

@@ -2,7 +2,7 @@ import { render } from '@testing-library/react';
 import React from 'react';
 import classes from './Event.css'
 import axios from 'axios';
-
+import {withRouter} from 'react-router-dom';
 
 
 const event=(props) =>{
@@ -28,4 +28,4 @@ const event=(props) =>{
         );
 }
 
-export default event;
+export default withRouter(event);

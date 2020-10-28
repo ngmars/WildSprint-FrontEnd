@@ -1,5 +1,5 @@
 import * as actions from '../../../store/Actions/Index';
-import Event from '../../../Components/Events/Event';
+import OneEvent from '../../../Components/oneEvent/oneEvent';
 import Spinner from '../../../Components/UI/Spinner/Spinner';
 import {Redirect} from 'react-router-dom';
 import Navbar from '../../../Components/Navbar/Navbar';
@@ -13,9 +13,8 @@ class OneFundDeets extends Component {
         
     }
     componentDidMount () {
-        let token = localStorage.getItem('token')
-    
-        this.props.onFetchEvents(token);
+        
+        this.props.onFetchOneEvents();
     };
 
     render(){
@@ -23,27 +22,27 @@ class OneFundDeets extends Component {
     //console.log(eventsArr.length,"THIS IS MAIN");
     let sidebar = <Sidebar role = {localStorage.getItem('role')}/>;
     let navbar =  <Navbar name ={localStorage.getItem('name')}/>;
-
-    let events = <Spinner/>;
-    if ( !this.props.loading ) {
-        let eventsArr= this.props.events.events;
-        for (let i=0;i<eventsArr.length;i++){
-            //console.log(i);
-            this.state.eventNameArr.push({
-                name: eventsArr[i].name,
-                image: eventsArr[i].image
-            });
-         console.log('EVENT NAME',this.state.eventNameArr) 
-        }
     
-    events = this.state.eventNameArr.map( event => (
-     
-        <Event
-         name={event.name}
-         image={event.image}
-           />
-        ))
-    }
+    let oneEvent;
+    let name = this.props.name;
+    let scfName = this.props.scientificName;
+    let habitat = this.props.habitat;
+    let status = this.props.status;
+    let description = this.props.description;
+    let image = this.props.image;
+    console.log("NAME ON EVENTS PAGE",this.props.oneEvent)
+    oneEvent=(
+        <OneEvent 
+        name = {name}
+        scientificName = {scfName}
+        habitat = {habitat}
+        description = {description}
+        status = {status}
+        image = {image}
+        />
+    )
+    
+   
     let TokenExpRedirect = null;
     if (!localStorage.getItem('token')){
         TokenExpRedirect =<Redirect to ='/'/>
@@ -54,7 +53,7 @@ class OneFundDeets extends Component {
                 {navbar}
                 {sidebar}
                 <div class="fund-pics row">
-                <div>{events}</div>
+                {oneEvent}
                 {TokenExpRedirect}
                 </div>
                 
@@ -64,21 +63,24 @@ class OneFundDeets extends Component {
     }
 }
 
-
+const mapStatetoProps = state =>{
+    console.log('main page',state.oneEvent.events.name)
+    return {
+         name : state.oneEvent.events.name,
+         scfName : state.oneEvent.events.scfName,
+         habitat :state.oneEvent.events.habitat,
+         status : state.oneEvent.events.status,
+         description : state.oneEvent.events.description,
+         image : state.oneEvent.events.image,
+    };
+};
 const mapSignInDispatchToProps =dispatch => {
   
     return{
-        onFetchEvents:(token) =>dispatch(actions.fetchEvents(token))
-    };
-};
-const mapStatetoProps = state =>{
-    console.log('main page',state)
-    return {
-        events:state.events,
-        loading:state.events.loading,
-        token:state.auth.token
+        
+        onFetchOneEvents:()=>dispatch(actions.fetchOneEvent())
     };
 };
 
 
-export default connect(mapStatetoProps, mapSignInDispatchToProps)(Events);
+export default connect(mapStatetoProps,mapSignInDispatchToProps)(OneFundDeets);

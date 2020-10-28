@@ -7,6 +7,7 @@ import Logout from'./Container/Auth/Logout/Logout';
 import ProfileDisp from './Container/Dashboard/Profile/Profile';
 import Events from './Container/Dashboard/Events/Events';
 import MyFund from './Container/Dashboard/Fundraiser/Fundraiser';
+import OneFundDeets from './Container/Dashboard/OneFundDeets/OneFundDeets';
 import {BrowserRouter as Router,Switch, Route} from "react-router-dom";
 
 class App extends Component {
@@ -33,6 +34,9 @@ class App extends Component {
         <Switch>
         <Route path="/StartFundForm" exact component={CreateFundraiser}/>
         </Switch>
+      <Switch>
+        <Route path="/oneFund" exact component={OneFundDeets}/>
+      </Switch>
     </Router>
 
     </div>

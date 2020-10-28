@@ -10,10 +10,10 @@ import React, { Component } from 'react';
 import { connect } from 'react-redux';
 
 
-
 class Events extends Component {
     state={
-        eventNameArr :[]
+        eventNameArr :[],
+        changeFundId:null,
         
     }
     componentDidMount () {
@@ -21,6 +21,13 @@ class Events extends Component {
     
         this.props.onFetchEvents(token);
     };
+    
+    redirectHandler= (event)=> {
+        console.log('EVENTTTT',event)
+        //this.props.onFetchOneEvents(event);
+        localStorage.setItem('eventId',event)
+        this.props.history.push('/oneFund');
+    }
 
     render(){
     //let eventsArr = this.props.events.events;
@@ -42,12 +49,18 @@ class Events extends Component {
         }
     
     events = this.state.eventNameArr.map( event => (
-     
-        <Event
-         name={event.name}
-         image={event.image}
-         fundId= {event.fundId}
-           />
+        <button name="componentButton" value={event} onClick={() => this.redirectHandler( event.fundId)}>
+        <div className="col-md-6 col-lg-4 col-xl-3">
+          <figure className="snip1527" >
+            <div className="image"><img src={'http://localhost:3001/'+event.image} /></div>
+            <figcaption>
+              <div className="date"><span className="day">GO</span><span className="month">FUND!</span></div>
+              <h3>{event.name}</h3>
+            </figcaption>
+            <a ></a>
+          </figure>
+        </div>
+        </button>
         ))
     }
     let TokenExpRedirect = null;
@@ -74,7 +87,8 @@ class Events extends Component {
 const mapSignInDispatchToProps =dispatch => {
   
     return{
-        onFetchEvents:(token) =>dispatch(actions.fetchEvents(token))
+        onFetchEvents:(token) =>dispatch(actions.fetchEvents(token)),
+        onFetchOneEvents:(fundId)=>dispatch(actions.fetchOneEvent(fundId))
     };
 };
 const mapStatetoProps = state =>{
