@@ -141,7 +141,7 @@
   
   .pets-name label, .pets-breed label, .pets-gender label, .pets-spayed-neutered label, .pets-weight label {
     display: block;
-    margin-bottom: 5px;
+    text-align: left;
   }
   
   .radio-container {
@@ -179,11 +179,13 @@
     padding-top:50%;
     max-width: 20em;
   }
-  
-  .eventphoto{
+    .eventphoto{
     float:right;
   }
-  
-  .set{
+    .set{
     padding: 0.5em;
+  }
+
+  .pets-input{
+    display: block;
   }

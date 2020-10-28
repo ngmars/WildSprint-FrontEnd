@@ -16,7 +16,7 @@ const event=(props) =>{
     console.log(imageUrl)
     return(
         <div className="col-md-6 col-lg-4 col-xl-3">
-          <figure className="snip1527" onClick={}>
+          <figure className="snip1527" >
             <div className="image"><img src={imageUrl} /></div>
             <figcaption>
               <div className="date"><span className="day">GO</span><span className="month">FUND!</span></div>

@@ -26,6 +26,7 @@ import classes from './SideBar.css';
         <ul class="sidebar-list" >
             <li><a href="/profile">PROFILE</a></li><br/><br/>
             <li><a href="/fund">FUNDRAISER</a></li><br/><br/>
+            <li><a href="/bill">BILLS</a></li><br/><br/>
             <li><a href="/events">EVENTS</a></li><br/><br/>
             <li><a href="/gallery">GALLERY</a></li>
         </ul>

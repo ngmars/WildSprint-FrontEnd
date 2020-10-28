@@ -110,6 +110,7 @@ onFileUpload = () => {
                     <label for='pets-name'>Fundraiser Name</label>
                     <input
                         id='pets-name'
+                        className='pets-input'
                         placeholder="Fundraiser Name"
                         type='text'
                         name='name'
@@ -117,18 +118,21 @@ onFileUpload = () => {
                         onChange={event => this.handleChange(event)}
                     />
                   </div>
-             <div className="eventphoto">
+                </div>
+
+                <div className="eventphoto">
                   <input  id="upload" ref="upload"  name="image" type="file" accept="image/*"
                         onChange={this.onFileChange}/>
-                    
-                  </div>
+                  
+                </div>
    
-                  </div>
+                
                 <div className='set'>
                   <div className='pets-breed'>
                     <label for='pets-breed'>Scientific Name</label>
                     <input
                         id='pets-breed'
+                        className='pets-input'
                         placeholder="Scientific Name"
                         type='text'
                         name='scientificName'
@@ -143,6 +147,7 @@ onFileUpload = () => {
                     <label for='pets-breed'>Habitat</label>
                     <input
                         id='pets-breed'
+                        className='pets-input'
                         placeholder="Habitat"
                         type='text'
                         name='habitat'
@@ -157,6 +162,7 @@ onFileUpload = () => {
                     <label for='pets-breed'>Description</label>
                     <textarea
                         id='pets-breed'
+                        className='pets-input'
                         placeholder="Description"
                         type='text'
                         rows="4" cols="50"
