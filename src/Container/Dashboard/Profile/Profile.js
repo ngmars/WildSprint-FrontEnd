@@ -1,4 +1,5 @@
 import * as actions from '../../../store/Actions/Index';
+import axios from 'axios';
 import Spinner from '../../../Components/UI/Spinner/Spinner';
 import {Redirect} from 'react-router-dom';
 import Input from '../../../Components/UI/Input/Input';
@@ -13,112 +14,77 @@ class ProfileDisp extends Component{
     
     state={
             isEditing:false,
-            lastname:{
-                elementType: 'input',
-                elementConfig: {
-                    className:'formcontrol',
-                    type: 'text',
-                    placeholder: 'text'
-                },
-                value: '',
-                validation: {
-                    required: true,
-         
-                },
-                valid: false,
-                touched: false
-            },
-            phone:{
-                elementType: 'input',
-                elementConfig: {
-                    className:'formcontrol',
-                    type: 'text',
-                    placeholder: 'text'
-                },
-                value: '',
-                validation: {
-                    required: true,
-                 
-                },
-                valid: false,
-                touched: false
-            }
+            lastname:null,
+            phone:null,
+            selectedFile: null
+            
     }
 
+    onFileChange = (event)=> { 
+  
+        // Update the state 
+        this.setState({ selectedFile: event.target.files[0] }); 
+        
+        }; 
+
+    
     componentDidMount () {
+    
         let token = localStorage.getItem('token')
         let userId = localStorage.getItem('userId')
-        this.props.onFetchEvents(token,userId);
-        
+        this.props.onFetchEvents(token,userId);  
     };
     switchEditHandler =()=>{
         this.setState(prevState=>{
                 return {isEditing: !prevState.isEditing}
         })
     };
-    submitHandler = (event) => {
-        if(this.state.isEditing){
-            console.log(this.state.lastname.value);
-        }
-    }
 
-    lastnameInputChangedHandler = (event, controlName) => {
-        
-        if(this.state.isEditing){
-            const updatedLastNameControls = {
-                ...this.state.lastname,
-                [controlName]: {
-                    ...this.state.lastname,
-                    value: event.target.value,
-                    valid: true,
-                    touched: true
-                }
-            };
-        this.setState({lastname: updatedLastNameControls});
-        }; 
+    handleChange = (event) => {
+        this.setState({
+            [event.target.name]: event.target.value
+        })
     }
+    onFileUpload = () => { 
+  
+        // Create an object of formData 
+        const formData = new FormData(); 
+        
+        // Update the formData object 
+        formData.append( 
+          "myFile", 
+          this.state.selectedFile, 
+          this.state.selectedFile.name 
+        ); 
+        console.log(formData); 
+        
+        const form = {
+            image: this.state.selectedFile,
+            lastname: this.state.lastname,
+            phone: this.state.phone,
+            }
+            console.log(form);
+            let token = localStorage.getItem('token')
+            let userId = localStorage.getItem('userId')
+            let config = {
+                headers: {
+                    'Authorization': 'Bearer ' + token
+                }
+              }
+            let url= ('http://localhost:3001/user/update/'+userId)
+            axios.patch(url,config,form)
+            this.setState(prevState=>{
+                return {isEditing: !prevState.isEditing}
+        })
+        console.log(form)
+    
+        }; 
 
-    phoneInputChangedHandler = (event, controlName) => {
-        
-        if(this.state.isEditing){
-            const updatedPhoneControls = {
-                ...this.state.lastname,
-                [controlName]: {
-                    ...this.state.phone,
-                    value: event.target.value,
-                    valid: true,
-                    touched: true
-                }
-            };
-        this.setState({phone: updatedPhoneControls});
-        }; 
-    }
 
 
     
+    
     render (){
-        let formLastnameArray //array for input elements
-        if(this.state.isSignIn){  
-            formLastnameArray= ( {
-                config: this.state.lastname
-            });
-        }
-
-
-
-        let lastnameInput = (formLastnameArray) => (
-            <Input
-                className={formLastnameArray.config.className}
-                elementType={formLastnameArray.config.elementType}
-                elementConfig={formLastnameArray.config.elementConfig}
-                value={formLastnameArray.config.value}
-                invalid={!formLastnameArray.config.valid}
-                shouldValidate={formLastnameArray.config.validation}
-                touched={formLastnameArray.config.touched}
-                changed={( event ) => this.inputChangedHandler( event, formLastnameArray )} />
-        );
-
-
         let name = this.props.name;
         let email = this.props.email;
         let lastname = this.props.lastname;
@@ -158,8 +124,10 @@ class ProfileDisp extends Component{
                 </td> 
                 <td class="colm">
                     <h5 class="titlename">{name} {lastname}</h5>           
-                    <input type="submit" class="profile-edit-btn" name="btnAddMore" value="Change Picture"/>
-                
+                 
+                    <input  id="upload" ref="upload" class="profile-edit-btn" name="image" type="file" accept="image/*"
+                        onChange={this.onFileChange}
+                         />
                     <div class="details">     
                         <table>
                             <tr>
@@ -172,12 +140,28 @@ class ProfileDisp extends Component{
                             </tr>
                             <tr>
                                 <td><label>Last Name</label></td>
-                                <td>{lastnameInput}</td>
+                                <td> <p><input
+                                            name='lastname'
+                                            placeholder={lastname}
+                                            value={this.state.lastname}
+                                            onChange={event => this.handleChange(event)}
+                                        />
+                                    </p> 
+                                </td>
                             </tr>
                             
                             <tr>
                                 <td><label>Phone</label></td>
-                                <td><p><input type="text" name="" id="" pattern="[0-9]{10}"value={phone}/></p></td>
+                                <td><p>
+                                <input
+                                            name='phone'
+                                            type="text"
+                                            placeholder={phone}
+                                            value={this.state.phone}
+                                            pattern="[0-9]{10}"
+                                            onChange={event => this.handleChange(event)}
+                                        />
+                                </p></td>
                             </tr>
                                                        
                         </table>                                 
@@ -196,7 +180,7 @@ class ProfileDisp extends Component{
               if (!this.state.isEditing){ 
             stateButton =( <input onClick={this.switchEditHandler}type="submit" class="profile-edit-btn" name="btnAddMore" value="Edit Profile"/>)}
             else{
-                stateButton =( <input onClick={this.switchEditHandler}type="submit" class="profile-edit-btn" name="btnAddMore" value="Submit"/>)}
+                stateButton =( <input onClick={this.onFileUpload}type="submit" class="profile-edit-btn" name="btnAddMore" value="Submit"/>)}
             
         console.log('just the name,Im main',this.props.name)
         return(
@@ -204,6 +188,7 @@ class ProfileDisp extends Component{
             {navbar}
             {sidebar}
             {profile}
+            {stateButton}
 
             {isAuth}
         </div> 
@@ -217,8 +202,8 @@ class ProfileDisp extends Component{
 const mapSignInDispatchToProps =dispatch => {
   
     return{
-        onFetchEvents:(token,userId) =>dispatch(actions.fetchProfile(token,userId))
-
+        onFetchEvents:(token,userId) =>dispatch(actions.fetchProfile(token,userId)),
+        onUpdateProfile:(lastname,phone,image,token,userId) => dispatch(actions.profileUpdate(lastname,phone,image,token,userId))
     };
 };
 

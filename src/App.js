@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import './App.css';
 
 import Auth from'./Container/Auth/Auth';
+import CreateFundraiser from './Container/Dashboard/StartFundraiser/StartFundraiser';
 import Logout from'./Container/Auth/Logout/Logout';
 import ProfileDisp from './Container/Dashboard/Profile/Profile';
 import Events from './Container/Dashboard/Events/Events';
@@ -28,6 +29,9 @@ class App extends Component {
         </Switch>
         <Switch>
         <Route path="/fund" exact component={MyFund}/>
+        </Switch>
+        <Switch>
+        <Route path="/StartFundForm" exact component={CreateFundraiser}/>
         </Switch>
     </Router>
 

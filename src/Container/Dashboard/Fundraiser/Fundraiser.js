@@ -8,7 +8,7 @@ import Sidebar from '../../../Components/SideBar/Sidebar';
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import classes from './fundraiser.css';
-
+import FormData from 'form-data'; 
 
 class Myfunds extends Component {
     state={
@@ -45,8 +45,8 @@ class Myfunds extends Component {
         }
     
     events = this.state.eventNameArr.map( event => (
-     console.log("NOOB",event.name),
-        <Event
+     //console.log("NOOB",event.name),
+        <MyFund
          name={event.name}
          image={event.image}
            />

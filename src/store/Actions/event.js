@@ -26,7 +26,7 @@ export const fetchEvents =(token)=>{
         console.log('GOT DATA');
         let config = {
             headers: {
-              'Authorization': 'Bearer ' + token
+                'Authorization': 'Bearer ' + token
             }
           }
         axios.get('http://localhost:3001/fundraiser/',config)

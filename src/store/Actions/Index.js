@@ -8,3 +8,7 @@ export {fetchEvents} from './event';
 export {fetchProfile} from './profile';
 
 export {fetchMyFund} from './myFund';
+
+export {profileUpdate} from './profileUpdate';
+
+export {startMyFund}  from './createFund'
