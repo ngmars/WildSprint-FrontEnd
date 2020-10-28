@@ -5,6 +5,7 @@ import Auth from'./Container/Auth/Auth';
 import Logout from'./Container/Auth/Logout/Logout';
 import ProfileDisp from './Container/Dashboard/Profile/Profile';
 import Events from './Container/Dashboard/Events/Events';
+import MyFund from './Container/Dashboard/Fundraiser/Fundraiser';
 import {BrowserRouter as Router,Switch, Route} from "react-router-dom";
 
 class App extends Component {
@@ -24,6 +25,9 @@ class App extends Component {
         </Switch>
         <Switch>
         <Route path="/profile" exact component={ProfileDisp}/>
+        </Switch>
+        <Switch>
+        <Route path="/fund" exact component={MyFund}/>
         </Switch>
     </Router>
 

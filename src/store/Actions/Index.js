@@ -6,3 +6,5 @@ export {SignUp} from './signup' ;
 export {fetchEvents} from './event';
 
 export {fetchProfile} from './profile';
+
+export {fetchMyFund} from './myFund';

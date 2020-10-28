@@ -1,6 +1,7 @@
 import * as actions from '../../../store/Actions/Index';
 import Spinner from '../../../Components/UI/Spinner/Spinner';
 import {Redirect} from 'react-router-dom';
+import Input from '../../../Components/UI/Input/Input';
 import Profile from '../../../Components/Profile/Profile';
 import EditProfile from '../../../Components/Profile/editProfile';
 import Navbar from '../../../Components/Navbar/Navbar';
@@ -9,40 +10,39 @@ import React, { Component } from 'react';
 import { connect } from 'react-redux';
 
 class ProfileDisp extends Component{
+    
     state={
             isEditing:false,
-            controls_signIn: {
-                lastname: {
-                    elementType: 'input',
-                    elementConfig: {
-                        className:'formcontrol',
-                        type: 'text',
-                    },
-                    value: '',
-                    validation: {
-                        required: true,
-                        isEmail: true
-                    },
-                    valid: false,
-                    touched: false
+            lastname:{
+                elementType: 'input',
+                elementConfig: {
+                    className:'formcontrol',
+                    type: 'text',
+                    placeholder: 'text'
                 },
-                password: {
-                    elementType: 'input',
-                    elementConfig: {
-                        className:'formcontrol',
-                        type: 'text',
-                        placeholder: 'text'
-                    },
-                    value: '',
-                    validation: {
-                        required: true,
-                        Length: 10
-                    },
-                    valid: false,
-                    touched: false
-                
-                }
+                value: '',
+                validation: {
+                    required: true,
+         
+                },
+                valid: false,
+                touched: false
             },
+            phone:{
+                elementType: 'input',
+                elementConfig: {
+                    className:'formcontrol',
+                    type: 'text',
+                    placeholder: 'text'
+                },
+                value: '',
+                validation: {
+                    required: true,
+                 
+                },
+                valid: false,
+                touched: false
+            }
     }
 
     componentDidMount () {
@@ -58,26 +58,74 @@ class ProfileDisp extends Component{
     };
     submitHandler = (event) => {
         if(this.state.isEditing){
-            event.preventDefault();
-            this.props.onAuth(this.state.controls_signIn.email.value, this.state.controls_signIn.password.value);
+            console.log(this.state.lastname.value);
         }
     }
+
+    lastnameInputChangedHandler = (event, controlName) => {
+        
+        if(this.state.isEditing){
+            const updatedLastNameControls = {
+                ...this.state.lastname,
+                [controlName]: {
+                    ...this.state.lastname,
+                    value: event.target.value,
+                    valid: true,
+                    touched: true
+                }
+            };
+        this.setState({lastname: updatedLastNameControls});
+        }; 
+    }
+
+    phoneInputChangedHandler = (event, controlName) => {
+        
+        if(this.state.isEditing){
+            const updatedPhoneControls = {
+                ...this.state.lastname,
+                [controlName]: {
+                    ...this.state.phone,
+                    value: event.target.value,
+                    valid: true,
+                    touched: true
+                }
+            };
+        this.setState({phone: updatedPhoneControls});
+        }; 
+    }
+
+
+    
     render (){
-        const formElementsArray = []; //array for input elements
-        if(this.state.isSignIn){
-        for ( let key in this.state.controls_signIn ) {  // render input elements from array
-            formElementsArray.push( {
-                id: key,
-                config: this.state.controls_signIn[key]
+        let formLastnameArray //array for input elements
+        if(this.state.isSignIn){  
+            formLastnameArray= ( {
+                config: this.state.lastname
             });
         }
-        }
+
+
+
+        let lastnameInput = (formLastnameArray) => (
+            <Input
+                className={formLastnameArray.config.className}
+                elementType={formLastnameArray.config.elementType}
+                elementConfig={formLastnameArray.config.elementConfig}
+                value={formLastnameArray.config.value}
+                invalid={!formLastnameArray.config.valid}
+                shouldValidate={formLastnameArray.config.validation}
+                touched={formLastnameArray.config.touched}
+                changed={( event ) => this.inputChangedHandler( event, formLastnameArray )} />
+        );
+
+
         let name = this.props.name;
         let email = this.props.email;
         let lastname = this.props.lastname;
         let profession = this.props.profession;
         let phone = this.props.phone;
         let image = this.props.image;
+        let imageUrl= 'http://localhost:3001/'+image;
         console.log(image);
         let sidebar = <Sidebar role = {localStorage.getItem('role')}/>;
         let navbar =  <Navbar name ={localStorage.getItem('name')}/>;
@@ -87,7 +135,7 @@ class ProfileDisp extends Component{
                 isAuth = <Redirect to ='/'/>
             )
         }
-        
+     
        
         let profile;
         if (!this.state.isEditing){
@@ -100,15 +148,50 @@ class ProfileDisp extends Component{
                             image ={image}
                 />);
             }else{
-                profile =(<EditProfile
-                    name={name} 
-                    lastname={lastname}
-                    email={email}
-                    profession={profession}
-                    phone={phone}
-                    image ={image}
-                    />);
-            }
+
+                profile = (
+                    <div class="emp-profile">
+            <table>        
+            <tr>
+                <td class="colm">
+                    <img src={imageUrl} alt="" class="profilepic"/>
+                </td> 
+                <td class="colm">
+                    <h5 class="titlename">{name} {lastname}</h5>           
+                    <input type="submit" class="profile-edit-btn" name="btnAddMore" value="Change Picture"/>
+                
+                    <div class="details">     
+                        <table>
+                            <tr>
+                                <td><label>Email</label></td>
+                                <td><p>{email}</p></td>
+                            </tr>
+                            <tr>
+                                <td><label>First Name</label></td>
+                                <td><p>{name}</p></td>
+                            </tr>
+                            <tr>
+                                <td><label>Last Name</label></td>
+                                <td>{lastnameInput}</td>
+                            </tr>
+                            
+                            <tr>
+                                <td><label>Phone</label></td>
+                                <td><p><input type="text" name="" id="" pattern="[0-9]{10}"value={phone}/></p></td>
+                            </tr>
+                                                       
+                        </table>                                 
+                    </div>                  
+                </td>   
+            </tr>
+            </table>
+    </div>
+
+                )}
+
+
+
+
             let stateButton ;
               if (!this.state.isEditing){ 
             stateButton =( <input onClick={this.switchEditHandler}type="submit" class="profile-edit-btn" name="btnAddMore" value="Edit Profile"/>)}
@@ -121,7 +204,7 @@ class ProfileDisp extends Component{
             {navbar}
             {sidebar}
             {profile}
-            {stateButton}
+
             {isAuth}
         </div> 
             
@@ -135,6 +218,7 @@ const mapSignInDispatchToProps =dispatch => {
   
     return{
         onFetchEvents:(token,userId) =>dispatch(actions.fetchProfile(token,userId))
+
     };
 };
 

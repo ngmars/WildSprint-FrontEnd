@@ -12,10 +12,11 @@ import authReducer from './store/Reducers/auth';
 import SignUpReducer from './store/Reducers/signup';
 import EventsReducer from './store/Reducers/event';
 import ProfileReducer from './store/Reducers/profile';
+import MyFundReducer from './store/Reducers/myFund';
 const composeEnhancers = window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__ || compose;
 
 const rootReducer = combineReducers({
-  auth:authReducer,signup:SignUpReducer, events:EventsReducer,profile:ProfileReducer
+  auth:authReducer,signup:SignUpReducer, events:EventsReducer,profile:ProfileReducer,myFund:MyFundReducer
 });
 
 const store = createStore(rootReducer, composeEnhancers(
