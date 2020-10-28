@@ -4,9 +4,11 @@ import classes from './Event.css'
 import axios from 'axios';
 
 
+
 const event=(props) =>{
     let name= props.name;
     let image = props.image;
+    let fundId = props.fundId;
     console.log("JSX ELEMENT name",name);
     console.log("JSX ELEMENT image",image);
     
@@ -14,7 +16,7 @@ const event=(props) =>{
     console.log(imageUrl)
     return(
         <div className="col-md-6 col-lg-4 col-xl-3">
-          <figure className="snip1527">
+          <figure className="snip1527" onClick={}>
             <div className="image"><img src={imageUrl} /></div>
             <figcaption>
               <div className="date"><span className="day">GO</span><span className="month">FUND!</span></div>

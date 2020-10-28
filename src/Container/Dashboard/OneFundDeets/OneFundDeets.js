@@ -1,5 +1,3 @@
-//import Event from '../../../Components/Events/Event';
-//import axios from 'axios';
 import * as actions from '../../../store/Actions/Index';
 import Event from '../../../Components/Events/Event';
 import Spinner from '../../../Components/UI/Spinner/Spinner';
@@ -9,9 +7,7 @@ import Sidebar from '../../../Components/SideBar/Sidebar';
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 
-
-
-class Events extends Component {
+class OneFundDeets extends Component {
     state={
         eventNameArr :[]
         
@@ -35,8 +31,7 @@ class Events extends Component {
             //console.log(i);
             this.state.eventNameArr.push({
                 name: eventsArr[i].name,
-                image: eventsArr[i].image,
-                fundId: eventsArr[i]._id
+                image: eventsArr[i].image
             });
          console.log('EVENT NAME',this.state.eventNameArr) 
         }
@@ -46,7 +41,6 @@ class Events extends Component {
         <Event
          name={event.name}
          image={event.image}
-         fundId= {event.fundId}
            />
         ))
     }
@@ -54,7 +48,6 @@ class Events extends Component {
     if (!localStorage.getItem('token')){
         TokenExpRedirect =<Redirect to ='/'/>
     }
-
        
         return(
             <div>
@@ -64,6 +57,7 @@ class Events extends Component {
                 <div>{events}</div>
                 {TokenExpRedirect}
                 </div>
+                
             </div>
 
         )
