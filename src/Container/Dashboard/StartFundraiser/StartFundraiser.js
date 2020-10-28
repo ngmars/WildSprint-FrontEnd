@@ -96,7 +96,7 @@ onFileUpload = () => {
             <div className='left-container'>
               <h1>WILDSPRINT</h1>
               <div>
-                <img src="assets/img/logo.png" alt="" className="logo"/>
+              <img src={require("./logo.png")}alt="logo" class="logo2"></img>
               </div>
             </div>
       
