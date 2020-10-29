@@ -10,6 +10,7 @@ import MyFund from './Container/Dashboard/Fundraiser/Fundraiser';
 import MyBills from './Container/Dashboard/MyBills/MyBills'
 import OneFundDeets from './Container/Dashboard/OneFundDeets/OneFundDeets';
 import DonateEvent from './Container/Dashboard/Donate/Donate';
+import Gallery from './Container/Dashboard/Gallery/Gallery';
 import {BrowserRouter as Router,Switch, Route} from "react-router-dom";
 
 class App extends Component {
@@ -45,7 +46,11 @@ class App extends Component {
       <Switch>
         <Route path="/MyBills" exact component={MyBills}/>
       </Switch>
+      <Switch>
+      <Route path="/Gallery" exact component={Gallery}/>
+      </Switch>
     </Router>
+    
 
     </div>
   );
