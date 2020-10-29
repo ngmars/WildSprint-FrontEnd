@@ -126,6 +126,7 @@ class ProfileDisp extends Component{
             }else{
 
                 profile = (
+                    <div class="dummy">
                     <div class="emp-profile">
             <table>        
             <tr>
@@ -135,7 +136,7 @@ class ProfileDisp extends Component{
                 <td class="colm">
                     <h5 class="titlename">{name} {lastname}</h5>           
                  
-                    <input  id="upload" ref="upload" class="profile-edit-btn" name="image" type="file" accept="image/*"
+                    <input  id="upload" ref="upload" class="details" name="image" type="file" accept="image/*"
                         onChange={this.onFileChange}
                          />
                     <div class="details">     
@@ -180,7 +181,7 @@ class ProfileDisp extends Component{
             </tr>
             </table>
     </div>
-
+    </div>
                 )}
 
 

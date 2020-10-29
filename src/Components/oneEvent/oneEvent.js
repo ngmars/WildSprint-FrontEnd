@@ -21,9 +21,9 @@ const oneEvent=(props) =>{
             <table>        
                 <tr>
                     <td class="colm">
-                        <img src={imageUrl} alt="" class="profilepic"/>
+                        <img src={imageUrl} alt="" class="fund-profilepic"/>
                     </td> 
-                    <td class="colm">
+                    <td class="fund-colm">
                         <h5 class="titlename">Fundraiser Details</h5>           
                         
                     

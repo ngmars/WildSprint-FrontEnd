@@ -24,11 +24,9 @@
   font-size: 16px;
   color: #6c757d;
   cursor: pointer;
-  margin-bottom: 10%;
-  margin-top: -1em;
-}
-.details{
-  margin: 0%;
+  float: right;
+  margin-top: -23%;  
+  margin-right:6%;
 }
 
 .details label{

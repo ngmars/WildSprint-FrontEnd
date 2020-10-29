@@ -49,7 +49,7 @@ class OneFundDeets extends Component {
     
     
     let DonateButton =(
-        <button class="profile-edit-btn" name="btnAddMore" value="DONATE!" href="/Donate" onClick={() => this.redirectHandler()}>DONATE</button>
+        <button class="fund-edit-btn" name="btnAddMore" value="DONATE!" href="/Donate" onClick={() => this.redirectHandler()}>DONATE</button>
     )
    
     let TokenExpRedirect = null
@@ -60,12 +60,11 @@ class OneFundDeets extends Component {
         return(
             <div>
                 {navbar}
-                {sidebar}
-                <div class="fund-pics row">
-                    {DonateButton}
+                {sidebar}                
+                {DonateButton}
                 {oneEvent}
                 {TokenExpRedirect}
-                </div>
+                
                 
             </div>
 
