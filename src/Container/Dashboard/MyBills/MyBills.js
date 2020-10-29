@@ -31,8 +31,8 @@ class MyBills extends Component {
         if ( this.props.loading===false ) {
             let billsArr= this.props.bills;
             console.log('JUST CHECKING',billsArr)
-         
-           for (let i=0;i<3;i++){
+            const len = billsArr.length
+           for (let i=0;i<len;i++){
                 //console.log(i);
                 this.state.eventNameArr.push({
                     billId: billsArr[i]._id,

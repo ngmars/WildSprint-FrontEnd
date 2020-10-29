@@ -20,7 +20,7 @@ const fetchBillsSuccess = ( state, action ) => {
 };
 
 const fetchBillsFail = ( state, action ) => {
-    return updateObject( state, { loading: false } );
+    return updateObject( state, { loading: true } );
 };
 
 const reducer =(state = initialState, action )=>{

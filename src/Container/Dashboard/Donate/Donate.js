@@ -56,7 +56,9 @@ class EventDonate extends Component{
     render(){
         let fundId = localStorage.getItem('eventId')
         let DonateForm;
-        DonateForm=(<div className='signup-container'>
+        DonateForm=(
+    <div className="body">
+        <div className='signup-container'>
             <div className='left-container'>
               <h1>
                 WILDSPRINT
@@ -97,16 +99,21 @@ class EventDonate extends Component{
                         </div>
                         {this.error}
                     </div>
-                </div>
+
+                    <div className="footer">
+                        <div className='set'>
+                        <button className='back'>Back</button>
+                        <button className='next' onClick={this.onFileUpload}>DONATE</button>
+                        
+                        </div>
+                    </div>
+            
+            </div>    
+            
+        </div>
+    </div>
     
-              <div className="footer">
-                <div className='set'>
-                  <button className='back'>Back</button>
-                  <button className='next' onClick={this.onFileUpload}><strong>DONATE</strong></button>
-                 
-                </div>
-              </div>
-            </div>)
+    )
         return(
             <div>
             {DonateForm}
