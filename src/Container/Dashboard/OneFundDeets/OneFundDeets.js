@@ -17,10 +17,11 @@ class OneFundDeets extends Component {
         this.props.onFetchOneEvents();
     };
    
-    DonateRedirect=(event)=>{
-        this.push('/Donate');
-        return(<Redirect to ='/Donate'/>)
-    };
+    redirectHandler= ()=> {
+        console.log('EVENTTTT')
+        //this.props.onFetchOneEvents(event);
+        this.props.history.push('/Donate');
+    }
     render(){
     //let eventsArr = this.props.events.events;
     //console.log(eventsArr.length,"THIS IS MAIN");
@@ -48,10 +49,10 @@ class OneFundDeets extends Component {
     
     
     let DonateButton =(
-        <button class="profile-edit-btn" name="btnAddMore" value="DONATE!" href="/Donate" onclick={(event) => this.DonateRedirect(event)}>DONATE</button>
+        <button class="profile-edit-btn" name="btnAddMore" value="DONATE!" href="/Donate" onClick={() => this.redirectHandler()}>DONATE</button>
     )
    
-    let TokenExpRedirect = null;
+    let TokenExpRedirect = null
     if (!localStorage.getItem('token')){
         TokenExpRedirect =<Redirect to ='/'/>
     }
