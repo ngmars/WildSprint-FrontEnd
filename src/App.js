@@ -7,6 +7,7 @@ import Logout from'./Container/Auth/Logout/Logout';
 import ProfileDisp from './Container/Dashboard/Profile/Profile';
 import Events from './Container/Dashboard/Events/Events';
 import MyFund from './Container/Dashboard/Fundraiser/Fundraiser';
+import MyBills from './Container/Dashboard/MyBills/MyBills'
 import OneFundDeets from './Container/Dashboard/OneFundDeets/OneFundDeets';
 import DonateEvent from './Container/Dashboard/Donate/Donate';
 import {BrowserRouter as Router,Switch, Route} from "react-router-dom";
@@ -40,6 +41,9 @@ class App extends Component {
       </Switch>
       <Switch>
         <Route path="/Donate" exact component={DonateEvent}/>
+      </Switch>
+      <Switch>
+        <Route path="/MyBills" exact component={MyBills}/>
       </Switch>
     </Router>
 

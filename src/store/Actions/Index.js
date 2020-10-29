@@ -11,6 +11,8 @@ export {fetchMyFund} from './myFund';
 
 export {profileUpdate} from './profileUpdate';
 
-export {startMyFund}  from './createFund'
+export {startMyFund}  from './createFund';
 
-export {fetchOneEvent} from './oneEvent'
+export {fetchOneEvent} from './oneEvent';
+
+export {fetchBills} from './getBills';
