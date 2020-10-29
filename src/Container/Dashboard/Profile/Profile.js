@@ -38,7 +38,11 @@ class ProfileDisp extends Component{
     switchEditHandler =()=>{
         this.setState(prevState=>{
                 return {isEditing: !prevState.isEditing}
+                
         })
+        let token = localStorage.getItem('token')
+        let userId = localStorage.getItem('userId')
+        this.props.onFetchEvents(token,userId); 
     };
 
     handleChange = (event) => {
@@ -76,6 +80,9 @@ class ProfileDisp extends Component{
                     'Content-Type': 'application/json'
                 }
             })
+            
+            
+            this.props.onFetchEvents(token,userId); 
             this.setState(prevState=>{
                 return {isEditing: !prevState.isEditing}
         })

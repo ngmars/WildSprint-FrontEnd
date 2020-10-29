@@ -8,6 +8,7 @@ import ProfileDisp from './Container/Dashboard/Profile/Profile';
 import Events from './Container/Dashboard/Events/Events';
 import MyFund from './Container/Dashboard/Fundraiser/Fundraiser';
 import OneFundDeets from './Container/Dashboard/OneFundDeets/OneFundDeets';
+import DonateEvent from './Container/Dashboard/Donate/Donate';
 import {BrowserRouter as Router,Switch, Route} from "react-router-dom";
 
 class App extends Component {
@@ -36,6 +37,9 @@ class App extends Component {
         </Switch>
       <Switch>
         <Route path="/oneFund" exact component={OneFundDeets}/>
+      </Switch>
+      <Switch>
+        <Route path="/Donate" exact component={DonateEvent}/>
       </Switch>
     </Router>
 

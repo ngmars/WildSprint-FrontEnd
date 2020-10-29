@@ -16,7 +16,11 @@ class OneFundDeets extends Component {
         
         this.props.onFetchOneEvents();
     };
-
+   
+    DonateRedirect=(event)=>{
+        this.push('/Donate');
+        return(<Redirect to ='/Donate'/>)
+    };
     render(){
     //let eventsArr = this.props.events.events;
     //console.log(eventsArr.length,"THIS IS MAIN");
@@ -42,6 +46,10 @@ class OneFundDeets extends Component {
         />
     )
     
+    
+    let DonateButton =(
+        <button class="profile-edit-btn" name="btnAddMore" value="DONATE!" href="/Donate" onclick={(event) => this.DonateRedirect(event)}>DONATE</button>
+    )
    
     let TokenExpRedirect = null;
     if (!localStorage.getItem('token')){
@@ -53,6 +61,7 @@ class OneFundDeets extends Component {
                 {navbar}
                 {sidebar}
                 <div class="fund-pics row">
+                    {DonateButton}
                 {oneEvent}
                 {TokenExpRedirect}
                 </div>

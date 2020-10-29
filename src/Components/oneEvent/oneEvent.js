@@ -2,7 +2,7 @@ import { render } from '@testing-library/react';
 import React from 'react';
 import classes from './oneEvent.css'
 import axios from 'axios';
-
+import {Redirect} from 'react-router-dom';
 const oneEvent=(props) =>{
     console.log('MEH EH MEH',props)
         let name = props.name;
@@ -12,8 +12,7 @@ const oneEvent=(props) =>{
         let description = props.description;
         let image = props.image;
         let imageUrl= 'http://localhost:3001/'+image;
-
-
+        
        
 
     return(<div class="dummy">
@@ -26,7 +25,7 @@ const oneEvent=(props) =>{
                     </td> 
                     <td class="colm">
                         <h5 class="titlename">Fundraiser Details</h5>           
-                        <input type="submit" class="profile-edit-btn" name="btnAddMore" value="DONATE!" onclick="window.location='donate.html';"/>
+                        
                     
                         <div class="details">     
                             <table>
