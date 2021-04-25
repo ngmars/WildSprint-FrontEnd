@@ -50,7 +50,7 @@ export const auth = (email, password) => {
             password:password,
         }
         console.log('SENT');
-        let url= 'http://localhost:3001/auth/login'
+        let url= 'https://wildsprint-backend.herokuapp.com/auth/login'
         axios.post(url,authData)
         
         .then(response=>{

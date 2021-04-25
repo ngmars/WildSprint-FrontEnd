@@ -38,7 +38,7 @@ export const SignUp =(email,name,password)=>{
     }
     console.log('SignUpData');
     console.log('SENT SIGNUP');
-    let url = 'http://localhost:3001/auth/SignUp'
+    let url = 'https://wildsprint-backend.herokuapp.com/auth/SignUp'
     axios.post(url,SignUpData)
     .then(response=>{
         console.log('Reg Success');

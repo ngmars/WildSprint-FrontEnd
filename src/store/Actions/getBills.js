@@ -29,7 +29,7 @@ export const fetchBills =(token)=>{
                 'Authorization': 'Bearer ' + token
             }
           }
-        axios.get('http://localhost:3001/bill/myBills',config)
+        axios.get('https://wildsprint-backend.herokuapp.com/bill/myBills',config)
         .then(res=>{
            console.log("NEWWW RESPONSE",res.data.billing)
             const fetchedBills = [];

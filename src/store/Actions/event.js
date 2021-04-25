@@ -29,7 +29,7 @@ export const fetchEvents =(token)=>{
                 'Authorization': 'Bearer ' + token
             }
           }
-        axios.get('http://localhost:3001/fundraiser/',config)
+        axios.get('https://wildsprint-backend.herokuapp.com/fundraiser/',config)
         .then(res=>{
            // console.log("NEWWW RESPONSE",res.data.fundraiser)
             const fetchedEvents = [];

@@ -48,7 +48,7 @@ export const startMyFund =(form)=>{
           
 
           console.log("THIS IS BODY",body)
-          const url = 'http://localhost:3001/fundraiser/start'
+          const url = 'https://wildsprint-backend.herokuapp.com/fundraiser/start'
           axios.post(url,body,{
             headers: {
                 'Authorization': 'Bearer ' + form.token,

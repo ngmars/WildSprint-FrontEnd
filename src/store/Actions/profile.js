@@ -30,7 +30,7 @@ export const fetchProfile =(token,userId)=>{
               'Authorization': 'Bearer ' + token
             }
           }
-        axios.get('http://localhost:3001/user/get/'+userId,config)
+        axios.get('https://wildsprint-backend.herokuapp.com/user/get/'+userId,config)
         .then(res=>{
            console.log("NEWWW RESPONSE",res.data)
            

@@ -38,7 +38,7 @@ export const profileUpdate = (phone,lastname,token,userId) => {
               'Authorization': 'Bearer ' + token
             }
           }
-          let url= ('http://localhost:3001/user/update/'+userId)
+          let url= ('https://wildsprint-backend.herokuapp.com/user/update/'+userId)
         axios.patch(url,config,profileUpdateData)
         
         .then(response=>{
