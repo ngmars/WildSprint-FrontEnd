@@ -18,7 +18,7 @@ class Auth extends Component {
                 elementType: 'input',
                 elementConfig: {
                     className:'formcontrol',
-                    type: 'email',
+                    type: 'input',
                     placeholder: 'Email'
                 },
                 value: '',
